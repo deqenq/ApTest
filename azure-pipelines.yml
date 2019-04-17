@@ -44,7 +44,7 @@ jobs:
 # Run a build on Windows at the same time
 - job: Windows
   pool:
-    vmImage: 'vs2017-win2016'
+    vmImage: 'windows-2019'
   # The Windows build involves running a powershell script
   # to execute the Cake build script
   steps:
