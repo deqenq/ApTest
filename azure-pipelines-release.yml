@@ -5,6 +5,8 @@ jobs:
 - job: Windows
   pool:
     vmImage: 'windows-2019'
+  variables:
+    patch: $[counter('myversioncounter', 0)]
   steps:
   - powershell: .\build.ps1 -Target="Package"
     env:
@@ -18,4 +20,4 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: "Nuget package"
+      artifactName: 'Package-$(patch)'
