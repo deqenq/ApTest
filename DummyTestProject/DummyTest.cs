@@ -9,7 +9,7 @@ namespace DummyTestProject
         [Fact]
         public void DummyTest()
         {
-            Assert.Equal(3, DummyClass.SumNumbers(2, 2));
+            Assert.Equal(3, DummyClass.SumNumbers(2, 1));
         }
     }
 }
