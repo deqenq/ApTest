@@ -4,6 +4,7 @@ var configuration = Argument("configuration", "Release");
 const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
+const string packageOutputDirectory = "dist";
 
 Task("Clean")
     .Does(() =>
@@ -44,6 +45,19 @@ Task("Test")
     };
 
     DotNetCoreTest(testProjectPath, settings);
+});
+
+Task("Package")
+    .IsDependentOn("Restore-Packages")
+    .Does(() =>
+{
+    var settings = new DotNetCorePackSettings
+    {
+        OutputDirectory = packageOutputDirectory,
+        Configuration = configuration
+    };
+    
+    DotNetCorePack(projectPath, settings);
 });
 
 Task("Default")
