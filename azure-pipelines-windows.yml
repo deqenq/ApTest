@@ -13,8 +13,8 @@ jobs:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   - task: PublishTestResults@2
     inputs:
-      testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-      testResultsFiles: '**/report_*.trx' 
+      testResultsFormat: 'VSTest' # JUnit, NUnit, VSTest, xUnit, cTest
+      testResultsFiles: '**/*.trx' 
       #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
       #mergeTestResults: false # Optional
       failTaskOnFailedTests: true # Optional
