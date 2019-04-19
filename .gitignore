@@ -4,5 +4,6 @@ bin/
 obj/
 tools/
 dist/
+TestsOutput/
 *.user
 project.lock.json

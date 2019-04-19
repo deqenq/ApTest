@@ -38,7 +38,9 @@ Task("Test")
     var settings = new DotNetCoreTestSettings
     {
         Configuration = configuration,
-        Framework = "netcoreapp2.1"
+        Framework = "netcoreapp2.1",
+        Logger = "trx",
+        VSTestReportPath = "TestsOutput/report.trx"
     };
 
     DotNetCoreTest(testProjectPath, settings);
