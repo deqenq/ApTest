@@ -14,7 +14,7 @@ jobs:
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'VSTest' # JUnit, NUnit, VSTest, xUnit, cTest
-      testResultsFiles: '**/report_*.trx' 
+      testResultsFiles: '**/*.trx' 
       #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
       #mergeTestResults: false # Optional
       failTaskOnFailedTests: true # Optional
