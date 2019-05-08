@@ -14,6 +14,7 @@ Task("Clean")
 });
 
 Task("Restore-Packages")
+    .IsDependentOn("Clean")
     .Does(() =>
 {
     DotNetCoreRestore(solutionPath);
