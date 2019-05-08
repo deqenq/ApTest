@@ -9,3 +9,5 @@ Build server | Platform | Build status
 Azure Pipelines | Windows | [![Build Status](https://dev.azure.com/deqenq/ApTest/_apis/build/status/deqenq.ApTest%20-%20Windows?branchName=master)](https://dev.azure.com/deqenq/ApTest/_build/latest?definitionId=1&branchName=master)
 Azure Pipelines | Ubuntu | [![Build Status](https://dev.azure.com/deqenq/ApTest/_apis/build/status/deqenq.ApTest%20-%20Ubuntu?branchName=master)](https://dev.azure.com/deqenq/ApTest/_build/latest?definitionId=3&branchName=master)
 Azure Pipelines | macOS | [![Build Status](https://dev.azure.com/deqenq/ApTest/_apis/build/status/deqenq.ApTest%20-%20macOS?branchName=master)](https://dev.azure.com/deqenq/ApTest/_build/latest?definitionId=2&branchName=master)
+AppVeyor | Windows | [![Build status](https://ci.appveyor.com/api/projects/status/dt9irnfnenmsa1q7/branch/master?svg=true)](https://ci.appveyor.com/project/deqenq/aptest/branch/master)
+AppVeyor | Ubuntu | [![Build status](https://ci.appveyor.com/api/projects/status/fmu79kwufm78u4uj/branch/master?svg=true)](https://ci.appveyor.com/project/deqenq/aptest-5br4i/branch/master)
