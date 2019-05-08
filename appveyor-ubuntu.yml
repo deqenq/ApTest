@@ -3,4 +3,4 @@ image: Ubuntu1804
 environment:
   Configuration: Release
 build_script:
-- sh: .\build.sh -Target Test -Configuration $env:Configuration
+- sh: ./build.sh -Target Test -Configuration $env:Configuration
