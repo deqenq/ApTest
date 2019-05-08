@@ -1,6 +1,7 @@
 language: csharp
 install: true
-mono: none
+mono: 
+  - latest
 dotnet: 2.1.603
 dist: trusty
 sudo: required
