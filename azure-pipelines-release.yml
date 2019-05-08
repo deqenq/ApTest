@@ -1,6 +1,9 @@
 trigger:
 - master
 
+variables:
+  sdk_version: 2.1.603
+
 jobs:
 - job: Windows
   pool:
@@ -8,6 +11,12 @@ jobs:
   variables:
     patch: $[counter('myversioncounter', 0)]
   steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk'
+    inputs:
+      packageType: sdk
+      version: $(sdk_version)
+      installationPath: $(Agent.ToolsDirectory)/dotnet
   - powershell: .\build.ps1 -Target="Package"
     env:
       COREHOST_TRACE: 0

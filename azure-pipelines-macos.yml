@@ -1,11 +1,20 @@
 trigger:
 - master
 
+variables:
+  sdk_version: 2.1.603
+
 jobs:
 - job: macOS
   pool:
     vmImage: 'xcode9-macos10.13'
   steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk'
+    inputs:
+      packageType: sdk
+      version: $(sdk_version)
+      installationPath: $(Agent.ToolsDirectory)/dotnet
   - bash: ./build.sh
     env:
       COREHOST_TRACE: 0
