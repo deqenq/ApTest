@@ -1,6 +1,4 @@
 version: 1.0.{build}
 image: Visual Studio 2017
-environment:
-  Configuration: Release
 build_script:
-- ps: .\build.ps1 -Target=Test -Configuration=$env:Configuration
+- ps: .\build.ps1 -Target Test
