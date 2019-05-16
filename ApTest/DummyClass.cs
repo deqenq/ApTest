@@ -17,5 +17,17 @@ namespace ApTest
         {
             return a + b;
         }
+
+
+        /// <summary>
+        /// Subtract numbers
+        /// </summary>
+        /// <param name="a">Number one</param>
+        /// <param name="b">Number two</param>
+        /// <returns></returns>
+        static public int SubtractNumbers(int a, int b)
+        {
+            return a - b;
+        }
     }
 }
