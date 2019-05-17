@@ -72,7 +72,6 @@ Task("Package")
 Task("Coverage-Report")
     .IsDependentOn("Test")
     .WithCriteria(BuildSystem.IsRunningOnAppVeyor)
-    .WithCriteria(() => FileExists(coverageReport))
     .Does(() =>
 {
     var settings = new CoverallsIoSettings
