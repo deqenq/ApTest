@@ -1,3 +1,5 @@
+#tool nuget:?package=coveralls.io&version=1.4.2
+
 #addin nuget:?package=Cake.Coveralls&version=0.10.0
 
 var target = Argument("target", "Default");
@@ -72,6 +74,7 @@ Task("Package")
 Task("Coverage-Report")
     .IsDependentOn("Test")
     .WithCriteria(BuildSystem.IsRunningOnAppVeyor)
+    .WithCriteria(() => FileExists(coverageReport))
     .Does(() =>
 {
     var settings = new CoverallsIoSettings
