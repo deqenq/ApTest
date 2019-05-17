@@ -9,7 +9,7 @@ const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
 const string packageOutputDirectory = "dist";
-const string coverageReport = "../CoverageResults/coverage.xml";
+const string coverageReport = "CoverageResults/coverage.xml";
 
 Task("Clean")
     .Does(() =>
@@ -52,7 +52,7 @@ Task("Test")
 
     settings.ArgumentCustomization = 
         args => args.Append("/p:CollectCoverage=true")
-        .Append($"/p:CoverletOutput={coverageReport}")
+        .Append($"/p:CoverletOutput=../{coverageReport}")
         .Append("/p:CoverletOutputFormat=opencover");
 
     DotNetCoreTest(testProjectPath, settings);
@@ -74,7 +74,7 @@ Task("Package")
 Task("Coverage-Report")
     .IsDependentOn("Test")
     .WithCriteria(BuildSystem.IsRunningOnAppVeyor)
-    // .WithCriteria(() => FileExists(coverageReport))
+    .WithCriteria(() => FileExists(coverageReport))
     .Does(() =>
 {
     var settings = new CoverallsIoSettings
