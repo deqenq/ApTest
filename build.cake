@@ -1,3 +1,5 @@
+#addin nuget:?package=Cake.Coveralls&version=0.10.0
+
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 
@@ -5,6 +7,7 @@ const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
 const string packageOutputDirectory = "dist";
+const string coverageReport = "../CoverageResults/coverage.xml";
 
 Task("Clean")
     .Does(() =>
@@ -45,6 +48,11 @@ Task("Test")
         VSTestReportPath = "TestsOutput/report.trx"
     };
 
+    settings.ArgumentCustomization = 
+        args => args.Append("/p:CollectCoverage=true")
+        .Append($"/p:CoverletOutput={coverageReport}")
+        .Append("/p:CoverletOutputFormat=opencover");
+
     DotNetCoreTest(testProjectPath, settings);
 });
 
@@ -59,6 +67,20 @@ Task("Package")
     };
     
     DotNetCorePack(projectPath, settings);
+});
+
+Task("Coverage-Report")
+    .WithCriteria(BuildSystem.IsRunningOnAppVeyor)
+    .WithCriteria(() => FileExists(coverageReport))
+    .IsDependentOn("Test")
+    .Does(() =>
+{
+    var settings = new CoverallsIoSettings
+    {
+        RepoToken = EnvironmentVariable("CoverallsRepoToken")
+    };
+
+    CoverallsIo(coverageReport, settings);
 });
 
 Task("Default")
