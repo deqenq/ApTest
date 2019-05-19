@@ -9,13 +9,17 @@ const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
 const string packageOutputDirectory = "dist";
-readonly FilePath coverageReport = "CoverageResults/coverage.xml";
+const string testReportDirectory = "TestsOutput";
+const string coverageReportDirectory = "CoverageResults";
+readonly string coverageReport = $"{coverageReportDirectory}/coverage.xml";
 
 Task("Clean")
     .Does(() =>
 {
     CleanDirectories("**/bin");
     CleanDirectories("**/obj");
+    CleanDirectory(testReportDirectory);
+    CleanDirectory(coverageReportDirectory);
 });
 
 Task("Restore-Packages")
@@ -47,7 +51,7 @@ Task("Test")
         Configuration = configuration,
         Framework = "netcoreapp2.1",
         Logger = "trx",
-        VSTestReportPath = "TestsOutput/report.trx"
+        VSTestReportPath = $"{testReportDirectory}/report.trx"
     };
 
     settings.ArgumentCustomization = 
