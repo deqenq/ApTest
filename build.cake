@@ -9,7 +9,7 @@ const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
 const string packageOutputDirectory = "dist";
-const string coverageReport = "CoverageResults/coverage.xml";
+readonly FilePath coverageReport = "CoverageResults/coverage.xml";
 
 Task("Clean")
     .Does(() =>
@@ -53,7 +53,8 @@ Task("Test")
     settings.ArgumentCustomization = 
         args => args.Append("/p:CollectCoverage=true")
         .Append($"/p:CoverletOutput=../{coverageReport}")
-        .Append("/p:CoverletOutputFormat=opencover");
+        .Append("/p:CoverletOutputFormat=opencover")
+        .Append("/p:Exclude=[xunit.*]*");
 
     DotNetCoreTest(testProjectPath, settings);
 });
