@@ -1,3 +1,7 @@
+#tool nuget:?package=coveralls.io&version=1.4.2
+
+#addin nuget:?package=Cake.Coveralls&version=0.10.0
+
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 
@@ -5,12 +9,17 @@ const string solutionPath = "ApTest.sln";
 const string projectPath = "ApTest/ApTest.csproj";
 const string testProjectPath = "DummyTestProject/DummyTestProject.csproj";
 const string packageOutputDirectory = "dist";
+const string testReportDirectory = "TestsOutput";
+const string coverageReportDirectory = "CoverageResults";
+readonly string coverageReport = $"{coverageReportDirectory}/coverage.xml";
 
 Task("Clean")
     .Does(() =>
 {
     CleanDirectories("**/bin");
     CleanDirectories("**/obj");
+    CleanDirectory(testReportDirectory);
+    CleanDirectory(coverageReportDirectory);
 });
 
 Task("Restore-Packages")
@@ -42,8 +51,14 @@ Task("Test")
         Configuration = configuration,
         Framework = "netcoreapp2.1",
         Logger = "trx",
-        VSTestReportPath = "TestsOutput/report.trx"
+        VSTestReportPath = $"{testReportDirectory}/report.trx"
     };
+
+    settings.ArgumentCustomization = 
+        args => args.Append("/p:CollectCoverage=true")
+        .Append($"/p:CoverletOutput=../{coverageReport}")
+        .Append("/p:CoverletOutputFormat=opencover")
+        .Append("/p:Exclude=[xunit.*]*");
 
     DotNetCoreTest(testProjectPath, settings);
 });
@@ -59,6 +74,20 @@ Task("Package")
     };
     
     DotNetCorePack(projectPath, settings);
+});
+
+Task("Coverage-Report")
+    .IsDependentOn("Test")
+    .WithCriteria(BuildSystem.IsRunningOnAppVeyor)
+    .WithCriteria(() => FileExists(coverageReport))
+    .Does(() =>
+{
+    var settings = new CoverallsIoSettings
+    {
+        RepoToken = EnvironmentVariable("CoverallsRepoToken")
+    };
+
+    CoverallsIo(coverageReport, settings);
 });
 
 Task("Default")
