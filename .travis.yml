@@ -4,7 +4,7 @@ branches:
   - master
 install: true
 mono: 
-  - none
+  - latest
 dotnet: 5.0.200
 dist: focal
 sudo: required
