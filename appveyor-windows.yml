@@ -1,5 +1,5 @@
 version: 1.0.{build}
-image: Visual Studio 2019
+image: Visual Studio 2017
 environment:
   CoverallsRepoToken:
     secure: oWlDTrLhQLeGDzgAPJ+HXRZMKtfZkFCxzaKKayHRxSRS1n+fA/mEqpp8tczIrEUy
@@ -10,13 +10,12 @@ environment:
   # Disable sending .NET CLI telemetry to Microsoft.
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 build_script:
-- pwsh: |
+- ps:
     if ($isWindows) {
       Write-Host "This is Windows!"
     } else {
-      Write-Host "This is NOT Wondows!"
+      Write-Host "This is NOT Windows!"
     }
-- pwsh: |
     Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile "./dotnet-install.ps1"
     ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
-- pwsh: ./build.ps1 --Target="Coverage-Report"
+    ./build.ps1 --Target="Coverage-Report"
