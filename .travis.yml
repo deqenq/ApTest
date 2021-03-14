@@ -4,9 +4,9 @@ branches:
   - master
 install: true
 mono: 
-  - latest
+  - none
 dotnet: 5.0.200
-dist: trusty
+dist: focal
 sudo: required
 script:
   - ./build.sh
