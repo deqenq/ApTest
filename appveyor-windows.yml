@@ -1,7 +1,13 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 environment:
+  Configuration: Release
   CoverallsRepoToken:
     secure: oWlDTrLhQLeGDzgAPJ+HXRZMKtfZkFCxzaKKayHRxSRS1n+fA/mEqpp8tczIrEUy
+install:
+- ps: >-
+    Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ''./dotnet-install.ps1'
+
+    ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
 build_script:
-  - ps: ./build.ps1 --Target="Coverage-Report"
+  - ps: ./build.ps1 --Target="Coverage-Report" --Configuration="$env:Configuration"
