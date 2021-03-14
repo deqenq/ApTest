@@ -10,7 +10,8 @@ environment:
   # Disable sending .NET CLI telemetry to Microsoft.
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 install:
-  - pwsh: Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile "./dotnet-install.ps1"
-  - pwsh: ./dotnet-install.ps1 -JSonFile global.json -InstallDir "C:\Program Files\dotnet"
+  - ps: Write-Host 'This is PowerShell'
+  - ps: Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ''./dotnet-install.ps1'
+  - ps: ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
 build_script:
-  - pwsh: ./build.ps1 --Target="Coverage-Report"
+  - ps: ./build.ps1 --Target="Coverage-Report"
