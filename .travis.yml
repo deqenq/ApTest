@@ -6,7 +6,7 @@ install: true
 mono: 
   - latest
 dotnet: 5.0.200
-dist: trusty
+dist: xenial
 sudo: required
 script:
   - ./build.sh
