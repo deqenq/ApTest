@@ -1,7 +1,0 @@
-version: 1.0.{build}
-image: Visual Studio 2019
-environment:
-  CoverallsRepoToken:
-    secure: oWlDTrLhQLeGDzgAPJ+HXRZMKtfZkFCxzaKKayHRxSRS1n+fA/mEqpp8tczIrEUy
-build_script:
-  - ps: ./build.ps1 --Target="Coverage-Report"

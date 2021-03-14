@@ -1,0 +1,17 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+environment:
+  CoverallsRepoToken:
+    secure: oWlDTrLhQLeGDzgAPJ+HXRZMKtfZkFCxzaKKayHRxSRS1n+fA/mEqpp8tczIrEUy
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Disable the .NET first time experience to skip caching NuGet packages and speed up the build.
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending .NET CLI telemetry to Microsoft.
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+before_build:
+  - ps: Write-Host 'This is PowerShell'
+  - ps: Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ''./dotnet-install.ps1'
+  - ps: ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
+build_script:
+  - ps: ./build.ps1 --Target="Coverage-Report"
