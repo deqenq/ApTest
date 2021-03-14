@@ -4,7 +4,7 @@ using Xunit;
 
 namespace DummyTestProject
 {
-    public class UnitTest1
+    public class DummyTest
     {
         [Fact]
         public void DummySumTest()
