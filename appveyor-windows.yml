@@ -4,4 +4,19 @@ environment:
   CoverallsRepoToken:
     secure: oWlDTrLhQLeGDzgAPJ+HXRZMKtfZkFCxzaKKayHRxSRS1n+fA/mEqpp8tczIrEUy
 build_script:
+# https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
+- ps: |
+    if ($isWindows) {
+      Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -OutFile "./dotnet-install.ps1"
+      ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
+    }
+    else {
+      Invoke-WebRequest "https://dot.net/v1/dotnet-install.sh" -OutFile "./dotnet-install.sh"
+      sudo chmod u+x dotnet-install.sh
+      if ($isMacOS) {
+        sudo ./dotnet-install.sh --jsonfile global.json --install-dir '/usr/local/share/dotnet'
+      } else {
+        sudo ./dotnet-install.sh --jsonfile global.json --install-dir '/usr/share/dotnet'
+      }
+    }
 - ps: ./build.ps1 -Target Coverage-Report
