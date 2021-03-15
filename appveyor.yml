@@ -1,4 +1,4 @@
-# appveyor settings are controlled by UI settings, this is just exported yaml file
+# AppVeyor settings are controlled by UI settings, this is just exported yaml file
 version: 1.0.{build}
 image: Visual Studio 2019
 environment:
