@@ -11,4 +11,4 @@ install:
 
     ./dotnet-install.ps1 -JSonFile global.json -InstallDir 'C:\Program Files\dotnet'
 build_script:
-  - ps: ./build.ps1 --Target="Coverage-Report" --Configuration="$env:Configuration"
+- ps: ./build.ps1 --Target="Coverage-Report" --Configuration="$env:Configuration"
