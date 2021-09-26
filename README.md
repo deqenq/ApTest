@@ -10,7 +10,7 @@ Azure Pipelines | Windows | [![Build Status](https://dev.azure.com/deqenq/ApTest
 Azure Pipelines | Ubuntu | [![Build Status](https://dev.azure.com/deqenq/ApTest/_apis/build/status/deqenq.ApTest%20Ubuntu?branchName=master)](https://dev.azure.com/deqenq/ApTest/_build/latest?definitionId=15&branchName=master)
 Azure Pipelines | macOS | [![Build Status](https://dev.azure.com/deqenq/ApTest/_apis/build/status/deqenq.ApTest%20macOS?branchName=master)](https://dev.azure.com/deqenq/ApTest/_build/latest?definitionId=16&branchName=master)
 AppVeyor | Windows | [![Build status](https://ci.appveyor.com/api/projects/status/dt9irnfnenmsa1q7/branch/master?svg=true)](https://ci.appveyor.com/project/deqenq/aptest/branch/master)
-Travis CI | Ubuntu | [![Build Status](https://travis-ci.org/deqenq/ApTest.svg?branch=master)](https://travis-ci.org/deqenq/ApTest)
+Travis CI | Ubuntu | [![Build Status](https://app.travis-ci.com/deqenq/ApTest.svg?branch=master)](https://travis-ci.com/deqenq/ApTest)
 
 Test Coverage |
 --- |
